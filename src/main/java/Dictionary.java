@@ -31,16 +31,4 @@ public class Dictionary implements isDictionary {
     public int getSize(){
         return list.size();
     }
-
-    public static void main(String args[])
-    {
-        Dictionary list = new Dictionary();
-        String[] words = {"test1", "test1", "test1", "ttt", "tt3t", "tt5t", "t2tt"};
-        for (String word : words)
-        {
-            list.store(word);
-            System.out.print("Occurrence of word: "+ word +"; is: " + list.getOccurrence(word) + "\n");
-        }
-        System.out.print("Total unique words in dictionary is: " + list.getSize());
-    }
 }
