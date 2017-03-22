@@ -1,4 +1,5 @@
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 /**
@@ -6,13 +7,18 @@ import org.testng.annotations.Test;
  */
 
 public class TestDictionary {
+
+    private Dictionary obj;
+
+    @BeforeMethod
+    public void setUp() {
+        obj = new Dictionary();
+    }
+
+
     @Test
-    public void testDictionary() {
-
-        Dictionary obj = new Dictionary();
-
+    public void testRegister(){
         //ACT
-        obj.store("");
         obj.store("test1");
         obj.store("TEST1");
         obj.store("TesT1");
@@ -20,18 +26,28 @@ public class TestDictionary {
         obj.store("Test3");
 
         //ASSERT
-        Assert.assertEquals(obj.getOccurrence(""), 1);
         Assert.assertEquals(obj.getOccurrence("test1"), 3);
         Assert.assertEquals(obj.getOccurrence("TEST1"), 3);
+        Assert.assertEquals(obj.getOccurrence("TEST3"), 1);
+        Assert.assertEquals(obj.getOccurrence("Test2"), 1);
+        Assert.assertEquals(obj.getSize(), 3);
+    }
+
+    @Test
+    public void testEmpty(){
+        obj.store("");
+        Assert.assertEquals(obj.getOccurrence(""), 1);
+    }
+
+    @Test
+    public void testAbsent(){
+        Assert.assertEquals(obj.getOccurrence("some word"), 0);
         Assert.assertEquals(obj.getOccurrence(null), 0);
-        Assert.assertEquals(obj.getOccurrence("absent"), 0);
-        Assert.assertEquals(obj.getSize(), 4);
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class, expectedExceptionsMessageRegExp = "Word cannot be null")
-    public void testNullValueStore()
+    public void testNull()
     {
-        Dictionary obj = new Dictionary();
         obj.store(null);
     }
 }
