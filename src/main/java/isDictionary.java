@@ -3,5 +3,5 @@
  */
 public interface isDictionary {
     void store(String word) throws Exception;
-    int getOccurrence(String word) throws Exception;
+    int getOccurrence(String word);
 }

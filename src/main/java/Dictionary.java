@@ -21,9 +21,9 @@ public class Dictionary implements isDictionary {
     }
 
     public int getOccurrence(String word) {
-        if (word == null)
+        if (word == null || !list.containsKey(word.toLowerCase()))
         {
-            throw new IllegalArgumentException("Word cannot be null");
+            return 0;
         }
         return list.get(word.toLowerCase());
     }

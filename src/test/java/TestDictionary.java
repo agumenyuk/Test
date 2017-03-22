@@ -23,6 +23,8 @@ public class TestDictionary {
         Assert.assertEquals(obj.getOccurrence(""), 1);
         Assert.assertEquals(obj.getOccurrence("test1"), 3);
         Assert.assertEquals(obj.getOccurrence("TEST1"), 3);
+        Assert.assertEquals(obj.getOccurrence(null), 0);
+        Assert.assertEquals(obj.getOccurrence("absent"), 0);
         Assert.assertEquals(obj.getSize(), 4);
     }
 
@@ -31,13 +33,5 @@ public class TestDictionary {
     {
         Dictionary obj = new Dictionary();
         obj.store(null);
-    }
-
-    @Test(expectedExceptions = IllegalArgumentException.class, expectedExceptionsMessageRegExp = "Word cannot be null")
-    public void testNullValueGetOccurrence()
-    {
-        Dictionary obj = new Dictionary();
-        obj.store("");
-        obj.getOccurrence(null);
     }
 }
